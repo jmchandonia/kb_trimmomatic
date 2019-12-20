@@ -1,3 +1,7 @@
+### Version 1.2.14
+__Changes__
+- improve docs
+
 ### Version 1.2.10
 __Changes__
 - add RNASeqSampleSet output object

@@ -378,7 +378,6 @@ execTrimmomaticSingleLibrary() runs Trimmomatic on a single library
                      #'text_message': '',  # or is it 'message'?
                      'message': '',  # or is it 'text_message'?
                      'direct_html': None,
-                     'direct_html_index': 0,
                      'file_links': [],
                      'html_links': [],
                      'html_window_height': 220,
@@ -404,12 +403,12 @@ execTrimmomaticSingleLibrary() runs Trimmomatic on a single library
 
         # This is some powerful brute force nonsense, but it should be okay.
         #   (Note: it was not OK.  Now it is)
-        se_expected_field_order = ['Input Reads', 
-                                   'Surviving', 
+        se_expected_field_order = ['Input Reads',
+                                   'Surviving',
                                    'Dropped']
         se_report_re = re.compile('^Input Reads:\s*(\d+)\s*Surviving:\s*(\d+)\s*\(\d+\.\d+\%\)\s*Dropped:\s*(\d+)\s*\(\d+\.\d+\%\)')
-        pe_expected_field_order = ['Input Read Pairs', 
-                                   'Both Surviving', 
+        pe_expected_field_order = ['Input Read Pairs',
+                                   'Both Surviving',
                                    'Forward Only Surviving',
                                    'Reverse Only Surviving',
                                    'Dropped']
@@ -436,7 +435,7 @@ execTrimmomaticSingleLibrary() runs Trimmomatic on a single library
                     report_data[lib_i] = dict(zip(report_field_order[lib_i], m_se.groups()))
                     for f_name in report_field_order[lib_i]:
                         report_data[lib_i][f_name] = int(report_data[lib_i][f_name])
-                    
+
 
                 # paired end stats
                 m_pe = pe_report_re.match(line)
@@ -445,7 +444,7 @@ execTrimmomaticSingleLibrary() runs Trimmomatic on a single library
                     report_data[lib_i] = dict(zip(report_field_order[lib_i], m_pe.groups()))
                     for f_name in report_field_order[lib_i]:
                         report_data[lib_i][f_name] = int(report_data[lib_i][f_name])
-                   
+
 
                 else:
                     self.log(console, "SKIPPING OUTPUT.  Can't parse [" + line + "] (lib_i=" + str(lib_i) + ")")
@@ -781,7 +780,7 @@ execTrimmomaticSingleLibrary() runs Trimmomatic on a single library
 
             # run Trimmomatic App for One Library at a Time
             trimmomaticSingleLibrary_retVal = self.execTrimmomaticSingleLibrary (ctx, execTrimmomaticParams)[0]
-            
+
             # add to report
             report += trimmomaticSingleLibrary_retVal['report']+"\n\n"
             trimmed_readsSet_refs.append (trimmomaticSingleLibrary_retVal['output_filtered_ref'])

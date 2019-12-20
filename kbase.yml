@@ -8,7 +8,7 @@ service-language:
     python
 
 module-version:
-    1.2.12
+    1.2.14
 
 owners:
     [psdehal, dylan, wjriehl, umaganapathyswork, tgu2]
